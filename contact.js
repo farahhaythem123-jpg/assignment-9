@@ -1,5 +1,5 @@
 var addBtn = document.getElementById("addBtn");
-var modelOver = document.getElementById("modelOver");
+var modalOverlay = document.getElementById("modelOver");
 var closeBtn = document.getElementById("closeBtn");
 var cancelBtn = document.getElementById("cancelBtn");
 var contactForm = document.getElementById("contactForm");
@@ -19,12 +19,13 @@ var emgList = document.getElementById("emgList");
 var contacts = JSON.parse(localStorage.getItem("contacts")) || [];
 var currentPhoto = "";
 
+
 function openModal() {
   modalOverlay.classList.add("show");
 }
 
 function closeModal() {
-  modelOver.classList.remove("show");
+  modalOverlay.classList.remove("show");
   contactForm.reset();
   errorMsg.textContent = "";
   currentPhoto = "";
@@ -64,7 +65,7 @@ contactForm.addEventListener("submit", function (e) {
     return;
   }
 
- 
+
   for (var i = 0; i < contacts.length; i++) {
     if (contacts[i].phone == phone) {
       Swal.fire({
@@ -116,7 +117,7 @@ function showContacts() {
   for (var i = 0; i < contacts.length; i++) {
     var c = contacts[i];
 
-
+    
     var text = (c.name + " " + c.phone + " " + c.email).toLowerCase();
     if (text.indexOf(search) == -1) {
       continue;
