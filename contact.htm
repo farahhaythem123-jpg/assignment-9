@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContactHub - Smart Contact Manager</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+
+  
+  <nav class="navbar">
+    <div class="nav-content">
+
+      <div class="logo-area">
+        <div class="logo-icon">
+          <i class="fa-solid fa-address-book"></i>
+        </div>
+        <div>
+          <h1 class="logo-text">Contact<span>Hub</span></h1>
+          <p class="logo-sub">Smart Contact Manager</p>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <button class="add-btn" id="addBtn"><i class="fa-solid fa-plus"></i> Add Contact</button>
+        <button class="icon-btn"><i class="fa-solid fa-bell"></i></button>
+        <button class="icon-btn"><i class="fa-solid fa-gear"></i></button>
+        <div class="user-avatar"><img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-4.jpg" alt="profile-img"></div>
+      </div>
+
+    </div>
+  </nav>
+
+  <div class="container">
+
+   
+    <section class="stats">
+      <div class="stat-card">
+        <div class="stat-icon blue"><i class="fa-solid fa-user-group"></i></div>
+        <div>
+          <p class="stat-label">TOTAL</p>
+          <h3 class="stat-number" id="totalCount">0</h3>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon orange"><i class="fa-solid fa-star"></i></div>
+        <div>
+          <p class="stat-label">FAVORITES</p>
+          <h3 class="stat-number" id="favCount">0</h3>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon red"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div>
+          <p class="stat-label">EMERGENCY</p>
+          <h3 class="stat-number" id="emgCount">0</h3>
+        </div>
+      </div>
+    </section>
+
+    <main class="main">
+
+      <section class="contacts-section">
+        <h2>All Contacts</h2>
+        <p class="contacts-sub">Manage and organize your <span id="subCount">0</span> contacts</p>
+
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Search by name, phone, or email...">
+        </div>
+
+     
+        <div id="contactsList"></div>
+
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon"><i class="fa-solid fa-address-book"></i></div>
+          <h3>No contacts found</h3>
+          <p>Click "Add Contact" to get started</p>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+
+        <div class="side-card">
+          <div class="side-header favorites-header">
+            <div class="stat-icon orange small"><i class="fa-solid fa-star"></i></div>
+            <div>
+              <h3>Favorites</h3>
+              <p>Quick access to starred contacts</p>
+            </div>
+          </div>
+          <div class="side-body" id="favList">No favorites yet</div>
+        </div>
+
+        <div class="side-card">
+          <div class="side-header emergency-header">
+            <div class="stat-icon red small"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div>
+              <h3>Emergency</h3>
+              <p>Important contacts for urgent calls</p>
+            </div>
+          </div>
+          <div class="side-body" id="emgList">No emergency contacts</div>
+        </div>
+
+      </aside>
+    </main>
+
+  </div>
+
+  <div class="model-over" id="modelOver">
+    <div class="model">
+
+      <div class="model-header">
+        <h2>Add New Contact</h2>
+        <button class="close-btn" type="button" id="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+
+        <div class="photo-section">
+          <div class="avatar" id="avatarPreview">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <button class="photo-btn" type="button" id="photoBtn">
+            <i class="fa-solid fa-camera"></i> Change Photo
+          </button>
+          <input type="file" id="photoInput" accept="image/*" hidden>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Full Name <span class="required">*</span></label>
+          <input type="text" id="name" placeholder="Enter full name">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number <span class="required">*</span></label>
+          <input type="tel" id="phone" placeholder="e.g., 01012345678">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="name@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" id="address" placeholder="Enter address">
+        </div>
+
+        <div class="form-group">
+          <label for="group">Group</label>
+          <select id="group">
+            <option value="">Select a group</option>
+            <option value="Family">Family</option>
+            <option value="Friends">Friends</option>
+            <option value="Work">Work</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Notes</label>
+          <textarea id="notes" rows="3" placeholder="Add notes about this contact"></textarea>
+        </div>
+
+        <div class="checkboxes">
+          <label class="check-label">
+            <input type="checkbox" id="favorite">
+            <i class="fa-solid fa-star star-icon"></i> Favorite
+          </label>
+
+          <label class="check-label">
+            <input type="checkbox" id="emergency">
+            <i class="fa-solid fa-heart-pulse heart-icon"></i> Emergency
+          </label>
+        </div>
+
+        <p class="error-msg" id="errorMsg"></p>
+
+        <div class="buttons">
+          <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
+          <button type="submit" class="save-btn">
+            <i class="fa-solid fa-check"></i> Save Contact
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="contact.js"></script>
+</body>
+</html>
+
